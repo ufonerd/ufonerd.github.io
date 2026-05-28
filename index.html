@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summit & Sand Society| Luxusresort für Familien</title>
+    <title>Summit & Sand Society | Luxusresort für Familien</title>
     <style>
         /* --- DESIGN SYSTEM (FARBEN & SCHRIFTEN) --- */
         :root {
@@ -60,14 +60,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0) 100%);
+            background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0) 100%);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             transition: all 0.4s ease;
         }
 
         header.scrolled {
             padding: 15px 5%;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(10, 10, 10, 0.98);
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
@@ -75,6 +76,8 @@
             font-size: 1.6rem;
             font-weight: 700;
             text-decoration: none;
+            color: var(--gold-primary);
+            font-family: var(--font-serif);
         }
 
         nav a {
@@ -94,7 +97,7 @@
         /* --- SEKTIONS-STYLING (ONE PAGER) --- */
         section {
             min-height: 100vh;
-            padding: 120px 8% 80px 8%;
+            padding: 140px 8% 80px 8%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -117,18 +120,24 @@
             margin-top: 15px;
         }
 
-        /* --- HERO REFT --- */
+        /* --- HERO SECTION (OPTIMIERT FÜR HINTERGRUNDBILD) --- */
         #hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(10,10,10,1)), url('images/background.png') center/cover no-repeat;
-            text-align: center;
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.95)), url('images/background.png') center center / cover no-repeat;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            padding: 0 20px;
         }
 
         #hero h1 {
             font-size: 4.5rem;
             margin-bottom: 20px;
             animation: fadeIn 2s ease;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
         #hero p {
@@ -137,6 +146,7 @@
             font-size: 1.5rem;
             color: var(--gold-glow);
             max-width: 600px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
         }
 
         /* --- LAYOUTS (TEXT & BILD SPLIT) --- */
@@ -147,12 +157,8 @@
             align-items: center;
         }
 
-        @media (max-width: 968px) {
-            .grid-2 {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            #hero h1 { font-size: 3rem; }
+        .mt-20 {
+            margin-top: 20px;
         }
 
         /* --- BILDER PLATZHALTER STYLING --- */
@@ -178,7 +184,7 @@
             transform: scale(1.05);
         }
 
-        /* --- SPEZIELLE ELEMENTE --- */
+        /* --- SPEZIELLE ELEMENTE & BUTTONS --- */
         .gold-button {
             display: inline-block;
             padding: 15px 35px;
@@ -192,6 +198,7 @@
             transition: all 0.3s ease;
             background: transparent;
             cursor: pointer;
+            text-align: center;
         }
 
         .gold-button:hover {
@@ -200,9 +207,14 @@
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
 
+        .mr-15 {
+            margin-right: 15px;
+        }
+
+        /* --- CARDS & PREISTABELLEN --- */
         .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
@@ -211,6 +223,9 @@
             padding: 40px;
             border: 1px solid rgba(212, 175, 55, 0.1);
             transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
@@ -219,8 +234,38 @@
         }
 
         .card h3 {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-size: 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 10px;
+        }
+
+        /* Preistabelle Styling */
+        .price-table {
+            width: 100%;
+            margin-top: 25px;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .price-table tr {
+            transition: background-color 0.2s;
+        }
+
+        .price-table tr:hover {
+            background-color: rgba(212, 175, 55, 0.03);
+        }
+
+        .price-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .price-table td:last-child {
+            text-align: right;
+            color: var(--gold-primary);
+            font-weight: 600;
+            padding-left: 15px;
         }
 
         /* --- INFOS LISTE (LAGE / ÖFFNUNGSZEITEN) --- */
@@ -245,6 +290,56 @@
             margin-bottom: 5px;
         }
 
+        /* --- KONTAKT FORMULAR --- */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            background: var(--panel-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 15px;
+            color: white;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+        }
+
+        .contact-form .gold-button {
+            margin-top: 0;
+            width: 100%;
+        }
+
+        .loyalty-box {
+            background: linear-gradient(135deg, rgba(230, 198, 98, 0.08) 0%, rgba(10, 10, 10, 0.4) 100%);
+            border: 1px solid var(--gold-primary);
+            padding: 60px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 900px;
+            margin: 40px auto 0 auto;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .loyalty-box h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .loyalty-box p {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
         /* --- FOOTER --- */
         footer {
             padding: 40px 5%;
@@ -260,13 +355,62 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* --- RESPONSIVE DESIGN (MEDIA QUERIES) --- */
+        @media (max-width: 1024px) {
+            header {
+                padding: 20px 5%;
+                flex-direction: column;
+                gap: 15px;
+                background: rgba(10, 10, 10, 0.95);
+            }
+            header.scrolled {
+                padding: 15px 5%;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 0.8rem;
+            }
+            section {
+                padding: 160px 5% 60px 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            #hero h1 { 
+                font-size: 2.8rem; 
+            }
+            #hero p {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 30px;
+            }
+            .image-box {
+                height: 300px;
+            }
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            nav a {
+                margin: 0 5px;
+            }
+        }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header id="navbar">
-        <span href="#hero" class="logo">Summit and Sand Society</span>
+        <a href="#hero" class="logo">Summit & Sand Society</a>
         <nav>
             <a href="#angebote">Angebote</a>
             <a href="#about">Über uns</a>
@@ -278,7 +422,7 @@
     </header>
 
     <section id="hero">
-        <h1>Two Seasons. One Society. Always Elite. </h1>
+        <h1>Two Seasons. One Society. Always Elite.</h1>
         <p>Beach Club - Ski Club - Lifestyle</p>
         <a href="#angebote" class="gold-button">Entdecken Sie Mehr</a>
     </section>
@@ -286,17 +430,45 @@
     <section id="angebote">
         <h2 class="section-title">Exklusive Angebote</h2>
         <div class="card-grid">
+            
             <div class="card">
-                <h3>Wassersport-Verleih:</h3>
-                <p>Im Sommer verleihen wir viele Wassersportaktivitäten wie: SUPs, Surfbretter, Tretboote, Ruderboote, Segelboote, E-Bikes und Fahrräder.</p>
+                <div>
+                    <h3>Wassersport & Verleih</h3>
+                    <p>Im Sommer verleihen wir erstklassiges Equipment für Ihre Aktivitäten auf dem Wasser und an Land.</p>
+                </div>
+                <table class="price-table">
+                    <tr><td>Stand-Up Paddling (SUP)</td><td>6€/Stunde</td></tr>
+                    <tr><td>Surfbretter </td><td>7€/Stunde</td></tr>
+                    <tr><td>Segelboote</td><td>20€/Stunde</td></tr>
+                    <tr><td>Ruderboote</td><td>12€/Stunde</td></tr>
+                    <tr><td>E-Bikes</td><td>8€/Stunde</td></tr>
+                    <tr><td>Trekking-Fahrräder</td><td>6€/Stunde</td></tr>
+                </table>
             </div>
+
             <div class="card">
-                <h3>Winter-Aktivitäten:</h3>
-                <p>Wir bieten Skikurse, Skier, Snowboards, Schlittschuhe und Schneetouren im Winter an.</p>
+                <div>
+                    <h3>Winter-Aktivitäten</h3>
+                    <p>Erleben Sie die kalte Jahreszeit mit maßgeschneiderten Kursen und modernstem Premium-Equipment.</p>
+                </div>
+                <table class="price-table">
+                    <tr><td>Skikurse</td><td>ab 20€</td></tr>
+                    <tr><td>Ski-Ausrüstung</td><td>auf Anfrage</td></tr>
+                    <tr><td>Snowboards</td><td>auf Anfrage</td></tr>
+                    <tr><td>Geführte Schneeschuhtouren</td><td>ab 25€</td></tr>
+                </table>
             </div>
+
             <div class="card">
-                <h3>Angebote rund ums Jahr:</h3>
-                <p>Wir haben eine Snackbar, einen Kids-Club, Teens-Club, Spa-Anlage mit Pools und Saunen, Gyms, Tennisplätzen, Basketballplätzen, einem Fußball-Käfig, einem Kino und Versammlungshalle!</p>
+                <div>
+                    <h3>Ganzjährige Highlights</h3>
+                    <p>Ein exklusives All-Round-Angebot von Sportanlagen über Wellness bis hin zu Entertainment für die Familie.</p>
+                </div>
+                <table class="price-table">
+                    <tr><td>Spa, Saunen & Gyms</td><td>inklusive</td></tr>
+                    <tr><td>Kids- & Teens-Club</td><td>inklusive</td></tr>
+                    <tr><td>Kino & Sportplätze</td><td>inklusive</td></tr>
+                </table>
             </div>
         </div>
     </section>
@@ -306,7 +478,7 @@
             <div>
                 <h2 class="section-title">Über Uns</h2>
                 <p>Gegründet mit der Vision, einen Ort zu schaffen, an dem Luxus und familiäre Geborgenheit keine Widersprüche sind. Summit and Sand Society verbindet preisgekrönte Architektur mit dem Service eines 5-Sterne-Superior-Resorts.</p>
-                <p style="margin-top: 20px;">Wir sind Victoria-Madeleine Bennet, Günther von Stimpler-Erhard, Frederick von Brandenburg und Pascal von Brandenburg </p>
+                <p class="mt-20">Wir heißen Sie herzlich willkommen,<br><strong>Victoria-Madeleine Bennet, Günther von Stimpler-Erhard, Frederick von Brandenburg & Pascal von Brandenburg</strong></p>
             </div>
             <div class="image-box">
                 <img src="images/logo.JPEG" alt="Unser Resort">
@@ -321,8 +493,8 @@
             </div>
             <div>
                 <h2 class="section-title">Sterne-Gastronomie</h2>
-                <p>Wir bieten Ihnen ihnen 4 Restaurants mit internationalem Themen: La Table Royale, Terra Mare, Palace Buffet, und Les Lotus Impérial</p>
-                <p style="margin-top: 20px;">Außerdem haben wir 3 Bars: Glass & Gold, Sunset Poolbar und die Matchpoint Bar, an denen Sie sich erfrischen können</p>
+                <p>Wir bieten Ihnen 4 Restaurants mit internationalen Themen: <em>La Table Royale, Terra Mare, Palace Buffet</em> und <em>Les Lotus Impérial</em>.</p>
+                <p class="mt-20">Außerdem erwarten Sie 3 exklusive Bars für Ihre Erfrischung: <em>Glass & Gold, Sunset Poolbar</em> und die <em>Matchpoint Bar</em>.</p>
             </div>
         </div>
     </section>
@@ -332,7 +504,7 @@
         <div class="grid-2">
             <div>
                 <p>Wir glauben, dass wahrer Luxus die Zukunft bewahrt. Unser Resort arbeitet zu 100% CO2-neutral durch eigene Geothermie und Solarsysteme. Plastikfreiheit und ein striktes Zero-Waste-Prinzip in unseren Küchen sind für uns selbstverständlich.</p>
-                <p style="margin-top: 20px;">Mit jedem Aufenthalt unterstützen Sie direkt die Wiederaufforstung der umliegenden Wälder sowie lokale Bildungsprojekte.</p>
+                <p class="mt-20">Mit jedem Aufenthalt unterstützen Sie direkt die Wiederaufforstung der umliegenden Wälder sowie lokale Bildungsprojekte.</p>
             </div>
             <div class="image-box">
                 <img src="images/uberuns.JPEG" alt="Nachhaltigkeit im Resort">
@@ -346,15 +518,14 @@
                 <h2 class="section-title">Öffnungszeiten</h2>
                 <ul class="info-list">
                     <li><span>Rezeption</span>24 Stunden geöffnet / 365 Tage im Jahr</li>
-                    <li><span>Unsere Attraktivitäten & Verleihe</span>Verfügbar von 10:00 bis 22:00 Uhr</li>
-                    <li><span>Saison</span>Hauptsaison: Mai - Oktober / Wintersaison: Dezember - März</li>
+                    <li><span>Unsere Aktivitäten & Verleihe</span>Verfügbar von 10:00 bis 22:00 Uhr</li>
+                    <li><span>Saisonzeiten</span>Hauptsaison: Mai - Oktober / Wintersaison: Dezember - März</li>
                 </ul>
             </div>
             <div>
                 <h2 class="section-title">Die Lage</h2>
                 <ul class="info-list">
                     <li><span>Adresse</span>Birnbachstraße 72</li>
-                    
                 </ul>
             </div>
         </div>
@@ -365,15 +536,24 @@
             <div>
                 <h2 class="section-title">Kontakt</h2>
                 <p>Da wir Wert auf absolute Diskretion und Individualität legen, erfolgt jede Reservierung über ein persönliches Gespräch mit unserem Grand Concierge.</p>
-                <p style="margin-top: 20px;">Hinterlassen Sie uns Ihre Details, oder rufen Sie unsere exklusive Linie direkt an. Unsere Emailadresse lautet sands.society@gmx.de</p>
-                <a href="tel:+4900000000" class="gold-button" style="margin-right: 15px;">Direkt Anrufen</a>
+                <p class="mt-20">Hinterlassen Sie uns Ihre Details oder rufen Sie unsere exklusive Linie direkt an. Unsere E-Mail-Adresse lautet: <strong>sands.society@gmx.de</strong></p>
+                <a href="tel:+4900000000" class="gold-button mr-15">Direkt Anrufen</a>
             </div>
             <div>
-                <form style="display: flex; flex-direction: column; gap: 20px;" onsubmit="event.preventDefault(); alert('Vielen Dank. Unser Concierge wird sich diskret bei Ihnen melden.');">
-                    <input type="text" placeholder="Ihr Name" required style="background: var(--panel-bg); border: 1px solid rgba(212, 175, 55, 0.2); padding: 15px; color: white; font-family: var(--font-sans);">
-                    <input type="email" placeholder="Ihre E-Mail-Adresse" required style="background: var(--panel-bg); border: 1px solid rgba(212, 175, 55, 0.2); padding: 15px; color: white; font-family: var(--font-sans);">
-                    <textarea placeholder="Ihre Wünsche" rows="5" style="background: var(--panel-bg); border: 1px solid rgba(212, 175, 55, 0.2); padding: 15px; color: white; font-family: var(--font-sans);"></textarea>
-                    <button type="submit" class="gold-button" style="margin-top: 0; width: 100%;">Buchungsanfrage Senden</button>
+                <form class="contact-form" id="bookingForm">
+                    <input type="text" id="bookingName" placeholder="Ihr Name" required>
+                    <input type="email" id="bookingEmail" placeholder="Ihre E-Mail-Adresse" required>
+                    <textarea id="bookingMessage" placeholder="Ihre Wünsche" rows="5"></textarea>
+                    <button type="submit" class="gold-button">Buchungsanfrage Senden</button>
+                </form>
+            </div>
+            
+            <div class="loyalty-box" style="margin-left: auto; margin-right: auto;">
+                <h3>Join the Society Circle</h3>
+                <p>Tragt eure Mail ein, um Einladungen zu unseren exklusiven Saison-Openings, Secret Events und privaten Club-Updates zu bekommen.</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input style="padding: 12px; background: var(--panel-bg); border: 1px solid rgba(212, 175, 55, 0.2); color: white; border-radius: 4px; width: 100%; max-width: 400px; display: block; margin: 0 auto 15px auto; font-family: var(--font-sans); font-size: 1rem;" type="email" id="newsletterEmail" placeholder="Deine E-Mail-Adresse" required>
+                    <button type="submit" class="gold-button" style="margin-top: 0;">Apply Now</button>
                 </form>
             </div>
         </div>
@@ -392,6 +572,49 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+        });
+
+        // Mailto-Logik für die Buchungsanfrage
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const emailResort = "sands.society@gmx.de";
+            const name = document.getElementById('bookingName').value;
+            const emailUser = document.getElementById('bookingEmail').value;
+            const message = document.getElementById('bookingMessage').value;
+            
+            const betreff = encodeURIComponent("Exklusive Buchungsanfrage - Summit & Sand Society");
+            
+            // Text für die E-Mail strukturieren
+            const body = encodeURIComponent(
+                `Sehr geehrter Grand Concierge,\n\n` +
+                `Es liegt eine neue Buchungsanfrage vor:\n\n` +
+                `Name des Gastes: ${name}\n` +
+                `E-Mail des Gastes: ${emailUser}\n\n` +
+                `Besondere Wünsche:\n${message}\n\n` +
+                `Bitte setzen Sie sich diskret mit dem Gast in Verbindung.`
+            );
+            
+            // Mailto-Link ausführen
+            window.location.href = `mailto:${emailResort}?subject=${betreff}&body=${body}`;
+        });
+
+        // Mailto-Logik für den Newsletter / Society Circle
+        document.getElementById('newsletterForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const emailResort = "sands.society@gmx.de";
+            const emailUser = document.getElementById('newsletterEmail').value;
+            
+            const betreff = encodeURIComponent("Society Circle Application");
+            
+            const body = encodeURIComponent(
+                `Hallo,\n\nich möchte gerne dem exklusiven Society Circle beitreten, um Updates und Einladungen zu erhalten.\n\n` +
+                `Bitte fügen Sie meine E-Mail-Adresse hinzu: ${emailUser}`
+            );
+            
+            // Mailto-Link ausführen
+            window.location.href = `mailto:${emailResort}?subject=${betreff}&body=${body}`;
         });
     </script>
 </body>
