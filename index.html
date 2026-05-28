@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Étoile D'Or | Luxusresort für Familien</title>
+    <style>
+        /* --- DESIGN SYSTEM (FARBEN & SCHRIFTEN) --- */
+        :root {
+            --bg-color: #0a0a0a;
+            --panel-bg: #121212;
+            --gold-primary: #d4af37;
+            --gold-glow: #f3e5ab;
+            --text-light: #f5f5f7;
+            --text-muted: #a1a1a6;
+            --font-serif: 'Playfair Display', 'Georgia', serif;
+            --font-sans: 'Inter', 'Helvetica Neue', sans-serif;
+        }
+
+        /* --- BASIC RESET & SMOOTH SCROLL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-sans);
+            background-color: var(--bg-color);
+            color: var(--text-light);
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* --- TYPOGRAFIE --- */
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            color: var(--gold-primary);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0) 100%);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        header.scrolled {
+            padding: 15px 5%;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* --- SEKTIONS-STYLING (ONE PAGER) --- */
+        section {
+            min-height: 100vh;
+            padding: 120px 8% 80px 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background-color: var(--gold-primary);
+            margin-top: 15px;
+        }
+
+        /* --- HERO REFT --- */
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(10,10,10,1)), url('HERO_BILD_PLATZHALTER.jpg') center/cover no-repeat;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease;
+        }
+
+        #hero p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--gold-glow);
+            max-width: 600px;
+        }
+
+        /* --- LAYOUTS (TEXT & BILD SPLIT) --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 968px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            #hero h1 { font-size: 3rem; }
+        }
+
+        /* --- BILDER PLATZHALTER STYLING --- */
+        .image-box {
+            width: 100%;
+            height: 450px;
+            background-color: var(--panel-bg);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .image-box:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- SPEZIELLE ELEMENTE --- */
+        .gold-button {
+            display: inline-block;
+            padding: 15px 35px;
+            border: 1px solid var(--gold-primary);
+            color: var(--gold-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .gold-button:hover {
+            background-color: var(--gold-primary);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--panel-bg);
+            padding: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold-primary);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* --- INFOS LISTE (LAGE / ÖFFNUNGSZEITEN) --- */
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        .info-list span {
+            color: var(--gold-primary);
+            font-family: var(--font-serif);
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 5%;
+            text-align: center;
+            background-color: #050505;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        /* --- ANIMATIONEN --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header id="navbar">
+        <a href="#hero" class="logo">L'ÉTOILE D'OR</a>
+        <nav>
+            <a href="#angebote">Angebote</a>
+            <a href="#about">Über uns</a>
+            <a href="#gastro">Gastronomie</a>
+            <a href="#nachhaltigkeit">Nachhaltigkeit</a>
+            <a href="#info">Zeiten & Lage</a>
+            <a href="#kontakt">Kontakt</a>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>Refugium für Generationen</h1>
+        <p>Erleben Sie kompromisslosen Luxus, maßgeschneidert für anspruchsvolle Familien.</p>
+        <a href="#angebote" class="gold-button">Entdecken Sie Mehr</a>
+    </section>
+
+    <section id="angebote">
+        <h2 class="section-title">Exklusive Angebote</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Family Private Villas</h3>
+                <p>Eigener Infinity-Pool, persönlicher Butler-Service und grenzenloser Freiraum für Ihre Liebsten.</p>
+            </div>
+            <div class="card">
+                <h3>Kids Elite Club</h3>
+                <p>Pädagogisch wertvolle Abenteuer, Reitunterricht und Meeresbiologie-Kurse für die Denker von morgen.</p>
+            </div>
+            <div class="card">
+                <h3>Aura Spa & Wellness</h3>
+                <p>Tiefenentspannung für Eltern, während die Kinder in sicheren, kreativen Händen die Natur erkunden.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="grid-2">
+            <div>
+                <h2 class="section-title">Über Uns</h2>
+                <p>Gegründet mit der Vision, einen Ort zu schaffen, an dem Luxus und familiäre Geborgenheit keine Widersprüche sind. L'Étoile D'Or verbindet preisgekrönte Architektur mit dem Service eines 5-Sterne-Superior-Resorts.</p>
+                <p style="margin-top: 20px;">Hier kreieren wir Erinnerungen, die über Generationen hinweg weitererzählt werden. Ein Rückzugsort, an dem Privatsphäre das höchste Gut bleibt.</p>
+            </div>
+            <div class="image-box">
+                <img src="UEBER_UNS_BILD_PLATZHALTER.jpg" alt="Unser Resort">
+            </div>
+        </div>
+    </section>
+
+    <section id="gastro">
+        <div class="grid-2">
+            <div class="image-box">
+                <img src="GASTRO_BILD_PLATZHALTER.jpg" alt="Sterne-Gastronomie">
+            </div>
+            <div>
+                <h2 class="section-title">Sterne-Gastronomie</h2>
+                <p>Drei Michelin-Sterne, interpretiert für die ganze Familie. Unsere Meisterköche kreieren Haute Cuisine aus organischen Zutaten unseres eigenen Anwesens.</p>
+                <p style="margin-top: 20px;">Für unsere jüngsten Feinschmecker bieten wir spielerische Tasting-Menüs, die den Gaumen auf höchstem Niveau fordern und fördern.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="nachhaltigkeit">
+        <h2 class="section-title">Nachhaltiger Luxus</h2>
+        <div class="grid-2">
+            <div>
+                <p>Wir glauben, dass wahrer Luxus die Zukunft bewahrt. Unser Resort arbeitet zu 100% CO2-neutral durch eigene Geothermie und Solarsysteme. Plastikfreiheit und ein striktes Zero-Waste-Prinzip in unseren Küchen sind für uns selbstverständlich.</p>
+                <p style="margin-top: 20px;">Mit jedem Aufenthalt unterstützen Sie direkt die Wiederaufforstung der umliegenden Wälder sowie lokale Bildungsprojekte.</p>
+            </div>
+            <div class="image-box">
+                <img src="NACHHALTIGKEIT_BILD_PLATZHALTER.jpg" alt="Nachhaltigkeit im Resort">
+            </div>
+        </div>
+    </section>
+
+    <section id="info">
+        <div class="grid-2">
+            <div>
+                <h2 class="section-title">Öffnungszeiten</h2>
+                <ul class="info-list">
+                    <li><span>Resort & Rezeption</span>24 Stunden geöffnet / 365 Tage im Jahr</li>
+                    <li><span>Helipad & Concierge-Service</span>Verfügbar von 06:00 bis 22:00 Uhr</li>
+                    <li><span>Saison</span>Hauptsaison: Mai - Oktober / Wintersaison: Dezember - März</li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="section-title">Die Lage</h2>
+                <ul class="info-list">
+                    <li><span>Adresse</span>Chemin du Paradis 77, 1234 Luxus-Küste</li>
+                    <li><span>Anreise</span>Privatjet-Zubringer ab Flughafen (20 Min.) oder via Yacht-Anleger direkt am Resort.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt">
+        <div class="grid-2">
+            <div>
+                <h2 class="section-title">Exklusive Buchung</h2>
+                <p>Da wir Wert auf absolute Diskretion und Individualität legen, erfolgt jede Reservierung über ein persönliches Gespräch mit unserem Grand Concierge.</p>
+                <p style="margin-top: 20px;">Hinterlassen Sie uns Ihre Details, oder rufen Sie unsere exklusive Linie direkt an.</p>
+                <a href="tel:+4900000000" class="gold-button" style="margin-right: 15px;">Direkt Anrufen</a>
+            </div>
+            <div>
+                <form style="display: flex; flex-direction: column; gap: 20px;" onsubmit="event.preventDefault(); alert('Vielen Dank. Unser Concierge wird sich diskret bei Ihnen melden.');">
+                    <input type="text" placeholder="Ihr Name" required style="background: var(--panel-bg); border: 1px solid rgba(212, 175, 55, 0.2); padding: 15px; color: white; font-family: var(--font-sans);">
+                    <input type="email" placeholder="Ihre E-Mail-Adresse" required style="background: var(--panel-bg); border: 1px solid rgba(212, 175, 55, 0.2); padding: 15px; color: white; font-family: var(--font-sans);">
+                    <textarea placeholder="Ihre Wünsche (z.B. Villa-Größe, Anreise mit Privatjet)" rows="5" style="background: var(--panel-bg); border: 1px solid rgba(212, 175, 55, 0.2); padding: 15px; color: white; font-family: var(--font-sans);"></textarea>
+                    <button type="submit" class="gold-button" style="margin-top: 0; width: 100%;">Buchungsanfrage Senden</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 L'Étoile D'Or Resort Management. Alle Rechte vorbehalten. | Privacy & Diskretion</p>
+    </footer>
+
+    <script>
+        // Macht die Navigation beim Scrollen kompakter und dunkler
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
